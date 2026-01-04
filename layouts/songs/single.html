@@ -1,0 +1,38 @@
+{{ define "main" }}
+<article class="markdown">
+  <h1>{{ .Title }}</h1>
+
+  <p>
+    {{ with .Params.author }}<strong>Author:</strong> {{ . }}{{ end }}
+    {{ with .Params.raga }} | <strong>Raga:</strong> {{ . }}{{ end }}
+  </p>
+
+  <hr>
+
+  {{ with .Params.lyrics }}
+    <h3>Original Lyrics</h3>
+    <div style="white-space: pre-wrap; font-size: 1.1em; margin-bottom: 20px;">
+      {{ . }}
+    </div>
+  {{ end }}
+
+  {{ with .Params.transliteration }}
+    <h3>Transliteration</h3>
+    <div style="white-space: pre-wrap; font-style: italic; margin-bottom: 20px;">
+      {{ . }}
+    </div>
+  {{ end }}
+
+  <h3>Translation</h3>
+  <div style="white-space: pre-wrap;">
+    {{ .Content }}
+  </div>
+
+  {{ with .Params.audio_link }}
+    <hr>
+    <audio controls style="width:100%;">
+      <source src="{{ . }}" type="audio/mpeg">
+    </audio>
+  {{ end }}
+</article>
+{{ end }}
